@@ -1,0 +1,17 @@
+version: "3"
+services:
+  brain:
+    build: ../brain/
+    ports:
+      - 9000:9000
+  monitor:
+    build: ../monitor/
+    depends_on:
+      - brain
+    ports:
+      - 80:80
+  robot:
+    build: ../robot/
+    network_mode: host
+    depends_on:
+      - brain
